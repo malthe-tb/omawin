@@ -15,7 +15,9 @@ function Write-Log {
     param([string] $Message)
 
     $timestamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-    "[$timestamp] $Message" | Tee-Object -FilePath $logFile -Append
+    $line = "[$timestamp] $Message"
+    Write-Host $line
+    Add-Content -Path $logFile -Value $line -Encoding UTF8
 }
 
 function Test-Command {
@@ -24,15 +26,39 @@ function Test-Command {
     $null -ne (Get-Command $Name -ErrorAction SilentlyContinue)
 }
 
+function Resolve-CommandPath {
+    param(
+        [string] $Command,
+        [string[]] $FallbackPaths = @()
+    )
+
+    $resolved = Get-Command $Command -ErrorAction SilentlyContinue
+    if ($resolved) {
+        return $resolved.Source
+    }
+
+    foreach ($fallbackPath in $FallbackPaths) {
+        if (Test-Path -LiteralPath $fallbackPath -PathType Leaf) {
+            return $fallbackPath
+        }
+    }
+
+    return $null
+}
+
 function Start-Command {
     param(
         [string] $Name,
         [string] $Command,
         [string[]] $Arguments = @(),
-        [int] $DelaySeconds = 0
+        [string[]] $FallbackPaths = @(),
+        [int] $DelaySeconds = 0,
+        [switch] $Wait
     )
 
-    if (-not (Test-Command $Command)) {
+    $commandPath = Resolve-CommandPath -Command $Command -FallbackPaths $FallbackPaths
+
+    if (-not $commandPath) {
         Write-Log "SKIP: $Name ($Command not found on PATH)"
         return
     }
@@ -43,7 +69,23 @@ function Start-Command {
 
     try {
         Write-Log "START: $Name"
-        Start-Process -WindowStyle Hidden -FilePath $Command -ArgumentList $Arguments
+
+        if ($Wait) {
+            $output = & $commandPath @Arguments 2>&1
+            foreach ($line in $output) {
+                Write-Log "${Name}: $line"
+            }
+
+            if ($LASTEXITCODE -ne 0) {
+                Write-Log "ERROR: $Name exited with code $LASTEXITCODE"
+            }
+        }
+        elseif ($Arguments -and $Arguments.Count -gt 0) {
+            Start-Process -WindowStyle Hidden -FilePath $commandPath -ArgumentList $Arguments
+        }
+        else {
+            Start-Process -WindowStyle Hidden -FilePath $commandPath
+        }
     }
     catch {
         Write-Log "ERROR: Failed to start $Name - $($_.Exception.Message)"
@@ -51,6 +93,11 @@ function Start-Command {
 }
 
 Write-Log 'Desktop startup begin'
+
+$Env:KOMOREBI_CONFIG_HOME = Join-Path $HOME '.config\komorebi'
+$komorebicPath = Join-Path $env:ProgramFiles 'komorebi\bin\komorebic.exe'
+$yasbcPath = Join-Path $env:ProgramFiles 'YASB\yasbc.exe'
+$tackyBordersPath = Join-Path $env:LOCALAPPDATA 'Programs\tacky-borders\tacky-borders.exe'
 
 if ($Restart) {
     if (Test-Command 'yasbc') {
@@ -62,12 +109,12 @@ if ($Restart) {
         Write-Log 'STOP: komorebi'
         & komorebic stop 2>&1 | ForEach-Object { Write-Log "komorebic: $_" }
     }
-
-    Get-Process -Name 'tacky-borders' -ErrorAction SilentlyContinue | Stop-Process -Force
 }
 
-Start-Command -Name 'komorebi' -Command 'komorebic' -Arguments @('start', '--whkd', '--masir')
-Start-Command -Name 'YASB' -Command 'yasbc' -Arguments @('start', '--silent') -DelaySeconds 2
-Start-Command -Name 'tacky-borders' -Command 'tacky-borders' -DelaySeconds 1
+Get-Process -Name 'tacky-borders' -ErrorAction SilentlyContinue | Stop-Process -Force
+
+Start-Command -Name 'komorebi' -Command 'komorebic' -Arguments @('start', '--whkd', '--masir') -FallbackPaths @($komorebicPath) -Wait
+Start-Command -Name 'YASB' -Command 'yasbc' -Arguments @('start', '--silent') -FallbackPaths @($yasbcPath) -DelaySeconds 2 -Wait
+Start-Command -Name 'tacky-borders' -Command 'tacky-borders' -FallbackPaths @($tackyBordersPath) -DelaySeconds 5
 
 Write-Log 'Desktop startup complete'

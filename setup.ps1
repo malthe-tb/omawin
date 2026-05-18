@@ -4,6 +4,7 @@ param(
     [switch] $SkipInstall,
     [switch] $SkipConfigs,
     [switch] $SkipStartup,
+    [switch] $SkipFonts,
     [switch] $SkipVSCodeExtensions
 )
 
@@ -26,6 +27,7 @@ if (-not $SkipInstall) {
     Invoke-Step -Name 'Install software' -Action {
         & (Join-Path $repoRoot 'scripts\install-software.ps1') `
             -WhatIf:$WhatIf `
+            -SkipFonts:$SkipFonts `
             -SkipVSCodeExtensions:$SkipVSCodeExtensions
     }
 }

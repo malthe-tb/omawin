@@ -43,6 +43,13 @@
     "terminal.integrated.fontFamily": "CaskaydiaMono Nerd Font",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.lineHeight": 1.2,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "path": "pwsh.exe",
+            "args": []
+        }
+    },
     "gitlens.ai.model": "vscode",
     "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     "window.menuBarVisibility": "compact",

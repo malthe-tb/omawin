@@ -4,6 +4,7 @@ param(
     [switch] $SkipApps,
     [switch] $SkipWindowManagement,
     [switch] $SkipTerminal,
+    [switch] $SkipFonts,
     [switch] $SkipTackyBorders,
     [switch] $SkipVSCodeExtensions
 )
@@ -36,7 +37,8 @@ $terminalPackages = @(
     @{ Name = 'eza'; Id = 'eza-community.eza' },
     @{ Name = 'ripgrep'; Id = 'BurntSushi.ripgrep.MSVC' },
     @{ Name = 'fd'; Id = 'sharkdp.fd' },
-    @{ Name = 'delta'; Id = 'dandavison.delta' }
+    @{ Name = 'delta'; Id = 'dandavison.delta' },
+    @{ Name = 'mise'; Id = 'jdx.mise' }
 )
 
 function Test-Command {
@@ -141,16 +143,130 @@ function Install-TackyBorders {
 
     $release = Invoke-RestMethod -Uri $releaseUri -Headers @{ 'User-Agent' = 'dotfiles-bootstrap' }
     $asset = $release.assets |
-        Where-Object { $_.name -like '*.exe' -and $_.name -like '*tacky*' } |
+        Where-Object { $_.name -match '^tacky-borders.*\.(exe|zip)$' } |
+        Sort-Object { if ($_.name -like '*.zip') { 0 } else { 1 } } |
         Select-Object -First 1
 
     if (-not $asset) {
-        throw 'Could not find a tacky-borders .exe asset in the latest GitHub release.'
+        throw 'Could not find a tacky-borders .exe or .zip asset in the latest GitHub release.'
     }
 
-    Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $target -UseBasicParsing
+    if ($asset.name -like '*.exe') {
+        Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $target -UseBasicParsing
+    } else {
+        $tempRoot = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
+        $zipPath = Join-Path $tempRoot $asset.name
+        $extractPath = Join-Path $tempRoot 'extract'
+
+        try {
+            New-Item -ItemType Directory -Force -Path $tempRoot, $extractPath | Out-Null
+            Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $zipPath -UseBasicParsing
+            Expand-Archive -LiteralPath $zipPath -DestinationPath $extractPath -Force
+
+            $executable = Get-ChildItem -LiteralPath $extractPath -Recurse -File |
+                Where-Object { $_.Name -eq 'tacky-borders.exe' } |
+                Select-Object -First 1
+
+            if (-not $executable) {
+                throw "Could not find tacky-borders.exe inside release asset: $($asset.name)"
+            }
+
+            Copy-Item -LiteralPath $executable.FullName -Destination $target -Force
+        } finally {
+            if (Test-Path -LiteralPath $tempRoot) {
+                Remove-Item -LiteralPath $tempRoot -Recurse -Force
+            }
+        }
+    }
+
     Add-UserPath -Path $installDir
     Write-Host "Installed: tacky-borders ($target)"
+}
+
+function Install-NerdFont {
+    $fontName = 'CaskaydiaMono Nerd Font'
+    $releaseUri = 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaMono.zip'
+    $fontsDir = Join-Path $env:LOCALAPPDATA 'Microsoft\Windows\Fonts'
+    $fontsRegistryPath = 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts'
+
+    $fontRegistry = Get-ItemProperty -Path $fontsRegistryPath -ErrorAction SilentlyContinue
+    $existingFont = $null
+
+    if ($fontRegistry) {
+        $existingFont = $fontRegistry |
+            Get-Member -MemberType NoteProperty |
+            Where-Object { $_.Name -like "$fontName*" -or $_.Name -like 'CaskaydiaMonoNerdFont*' } |
+            Select-Object -First 1
+    }
+
+    if ($existingFont) {
+        Write-Host "Already installed: $fontName"
+        return
+    }
+
+    if ($WhatIf) {
+        Write-Host "Would download latest $fontName release from: $releaseUri"
+        Write-Host "Would install fonts to: $fontsDir"
+        Write-Host "Would register fonts under: $fontsRegistryPath"
+        return
+    }
+
+    Write-Host "Installing: $fontName"
+
+    $tempRoot = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
+    $zipPath = Join-Path $tempRoot 'CascadiaMono.zip'
+    $extractPath = Join-Path $tempRoot 'extract'
+
+    try {
+        New-Item -ItemType Directory -Force -Path $tempRoot, $extractPath, $fontsDir | Out-Null
+        New-Item -Path $fontsRegistryPath -Force | Out-Null
+        Invoke-WebRequest -Uri $releaseUri -OutFile $zipPath -UseBasicParsing
+        Expand-Archive -LiteralPath $zipPath -DestinationPath $extractPath -Force
+
+        $fontFiles = Get-ChildItem -LiteralPath $extractPath -Recurse -File |
+            Where-Object { $_.Extension -in '.ttf', '.otf' }
+
+        if (-not $fontFiles) {
+            throw "Could not find font files inside $releaseUri"
+        }
+
+        foreach ($fontFile in $fontFiles) {
+            $target = Join-Path $fontsDir $fontFile.Name
+            Copy-Item -LiteralPath $fontFile.FullName -Destination $target -Force
+
+            $fontType = if ($fontFile.Extension -eq '.otf') { 'OpenType' } else { 'TrueType' }
+            $registryName = "$($fontFile.BaseName) ($fontType)"
+            New-ItemProperty -Path $fontsRegistryPath -Name $registryName -Value $fontFile.Name -PropertyType String -Force | Out-Null
+        }
+
+        if (-not ('FontChangeNotifier' -as [type])) {
+            Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+
+public static class FontChangeNotifier
+{
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    public static extern IntPtr SendMessageTimeout(
+        IntPtr hWnd,
+        uint Msg,
+        UIntPtr wParam,
+        string lParam,
+        uint fuFlags,
+        uint uTimeout,
+        out UIntPtr lpdwResult);
+}
+'@
+        }
+        $result = [UIntPtr]::Zero
+        [FontChangeNotifier]::SendMessageTimeout([IntPtr]0xffff, 0x001D, [UIntPtr]::Zero, $null, 0x0002, 1000, [ref]$result) | Out-Null
+
+        Write-Host "Installed: $fontName"
+    } finally {
+        if (Test-Path -LiteralPath $tempRoot) {
+            Remove-Item -LiteralPath $tempRoot -Recurse -Force
+        }
+    }
 }
 
 function Install-VSCodeExtensions {
@@ -203,6 +319,10 @@ if (-not $SkipWindowManagement) {
 if (-not $SkipTerminal) {
     foreach ($package in $terminalPackages) {
         Install-WingetPackage -Name $package.Name -Id $package.Id
+    }
+
+    if (-not $SkipFonts) {
+        Install-NerdFont
     }
 }
 

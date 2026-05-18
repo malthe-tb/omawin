@@ -95,14 +95,10 @@ Remove the startup task:
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | Fast recursive text search, exposed as `rg`. |
 | [fd](https://github.com/sharkdp/fd) | Simple, fast, user-friendly alternative to `find`. |
 | [delta](https://github.com/dandavison/delta) | Syntax-highlighting pager for Git diffs, grep, blame, and related output. |
+| [mise](https://mise.jdx.dev/) | Project-local dev tool version manager, environment loader, and task runner. |
+| [CaskaydiaMono Nerd Font](https://www.nerdfonts.com/font-downloads) | Nerd Font patched Cascadia Mono variant for terminal icons and glyphs. |
 
 Some of these should be wired up as aliases after install.
-
-## Misc
-
-| Tool | Description |
-| --- | --- |
-| [CaskaydiaCove Nerd Font](https://www.nerdfonts.com/font-downloads) | Nerd Font patched Cascadia Code variant for terminal icons and glyphs. |
 
 ## Keyboard
 
@@ -193,10 +189,11 @@ Useful install subsets:
 .\scripts\install-software.ps1 -SkipApps
 .\scripts\install-software.ps1 -SkipWindowManagement
 .\scripts\install-software.ps1 -SkipTerminal
+.\scripts\install-software.ps1 -SkipFonts
 .\scripts\install-software.ps1 -SkipVSCodeExtensions
 ```
 
-The installer currently uses `winget` for the main apps/tools and downloads `tacky-borders` from the latest GitHub release because it does not currently have a winget package.
+The installer currently uses `winget` for the main apps/tools, downloads `tacky-borders` from the latest GitHub release because it does not currently have a winget package, and downloads `CaskaydiaMono Nerd Font` from the latest Nerd Fonts release.
 
 Current winget packages:
 
@@ -220,8 +217,8 @@ Current winget packages:
 | ripgrep | `BurntSushi.ripgrep.MSVC` |
 | fd | `sharkdp.fd` |
 | delta | `dandavison.delta` |
+| mise | `jdx.mise` |
 
 Manual follow-up still needed:
 
-- Install `CaskaydiaCove Nerd Font` from Nerd Fonts.
 - Restart shells/apps after installing tools that update `PATH`.

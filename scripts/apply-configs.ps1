@@ -9,6 +9,7 @@ $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $backupRoot = Join-Path $repoRoot ('var\backups\apply-configs-{0}' -f (Get-Date -Format 'yyyyMMdd-HHmmss'))
+$documents = [Environment]::GetFolderPath('MyDocuments')
 
 $items = @(
     @{
@@ -32,9 +33,14 @@ $items = @(
         Destination = Join-Path $HOME '.config\tacky-borders'
     },
     @{
-        Name = 'PowerShell profile'
+        Name = 'PowerShell 7 profile'
         Source = Join-Path $repoRoot 'config\powershell\Microsoft.PowerShell_profile.ps1'
-        Destination = $PROFILE
+        Destination = Join-Path $documents 'PowerShell\Microsoft.PowerShell_profile.ps1'
+    },
+    @{
+        Name = 'Windows PowerShell profile'
+        Source = Join-Path $repoRoot 'config\powershell\Microsoft.PowerShell_profile.ps1'
+        Destination = Join-Path $documents 'WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
     },
     @{
         Name = 'Git config'

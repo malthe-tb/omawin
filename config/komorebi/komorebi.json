@@ -5,10 +5,7 @@
   "cross_monitor_move_behaviour": "Insert",
   "default_workspace_padding": 4,
   "default_container_padding": 4,
-  "border": true,
-  "border_width": 4,
-  "border_offset": -1,
-  "border_style": "Rounded",
+  "border": false,
   "theme": {
     "palette": "Base16",
     "name": "TokyoNightDark",

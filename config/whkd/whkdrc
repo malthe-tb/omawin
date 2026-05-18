@@ -11,15 +11,25 @@ alt + i                 : komorebic toggle-shortcuts
 # The apps will be focused if open, or launched if not open
 # alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
 # alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
+win + return            : $terminal = Get-Process wezterm-gui -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object -First 1; if ($terminal) { (New-Object -ComObject WScript.Shell).AppActivate($terminal.Id) | Out-Null } else { Start-Process 'C:\Program Files\WezTerm\wezterm-gui.exe' }
+win + shift + f         : Start-Process explorer.exe
+win + shift + m         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://open.spotify.com/'
+win + shift + a         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://chatgpt.com/'
+win + shift + y         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://www.youtube.com/'
+win + shift + g         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://mail.google.com/'
+win + shift + c         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://calendar.google.com/'
+win + shift + n         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://www.notion.so/'
+win + shift + t         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://todoist.com/app/'
+win + z                 : $wshell = New-Object -ComObject WScript.Shell; $zen = Get-Process zen -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object -First 1; if ($zen) { $wshell.AppActivate($zen.Id) | Out-Null } else { Start-Process 'C:\Program Files\Zen Browser\zen.exe' }
 
-alt + q                 : komorebic close
+win + q                 : komorebic close
 alt + m                 : komorebic minimize
 
 # Focus windows
-alt + h                 : komorebic focus left
-alt + j                 : komorebic focus down
-alt + k                 : komorebic focus up
-alt + l                 : komorebic focus right
+win + left              : komorebic focus left
+win + down              : komorebic focus down
+win + up                : komorebic focus up
+win + right             : komorebic focus right
 alt + shift + oem_4     : komorebic cycle-focus previous # oem_4 is [
 alt + shift + oem_6     : komorebic cycle-focus next # oem_6 is ]
 
@@ -31,10 +41,10 @@ alt + shift + l         : komorebic move right
 alt + shift + return    : komorebic promote
 
 # Stack windows
-alt + left              : komorebic stack left
-alt + down              : komorebic stack down
-alt + up                : komorebic stack up
-alt + right             : komorebic stack right
+alt + h                 : komorebic stack left
+alt + j                 : komorebic stack down
+alt + k                 : komorebic stack up
+alt + l                 : komorebic stack right
 alt + oem_1             : komorebic unstack # oem_1 is ;
 alt + oem_4             : komorebic cycle-stack previous # oem_4 is [
 alt + oem_6             : komorebic cycle-stack next # oem_6 is ]
@@ -46,6 +56,7 @@ alt + shift + oem_plus  : komorebic resize-axis vertical increase
 alt + shift + oem_minus : komorebic resize-axis vertical decrease
 
 # Manipulate windows
+win + f                 : komorebic toggle-monocle
 alt + t                 : komorebic toggle-float
 alt + shift + f         : komorebic toggle-monocle
 
@@ -58,21 +69,21 @@ alt + x                 : komorebic flip-layout horizontal
 alt + y                 : komorebic flip-layout vertical
 
 # Workspaces
-alt + 1                 : komorebic focus-workspace 0
-alt + 2                 : komorebic focus-workspace 1
-alt + 3                 : komorebic focus-workspace 2
-alt + 4                 : komorebic focus-workspace 3
-alt + 5                 : komorebic focus-workspace 4
-alt + 6                 : komorebic focus-workspace 5
-alt + 7                 : komorebic focus-workspace 6
-alt + 8                 : komorebic focus-workspace 7
+win + 1                 : komorebic focus-workspace 0
+win + 2                 : komorebic focus-workspace 1
+win + 3                 : komorebic focus-workspace 2
+win + 4                 : komorebic focus-workspace 3
+win + 5                 : komorebic focus-workspace 4
+win + 6                 : komorebic focus-workspace 5
+win + 7                 : komorebic focus-workspace 6
+win + 8                 : komorebic focus-workspace 7
 
 # Move windows across workspaces
-alt + shift + 1         : komorebic move-to-workspace 0
-alt + shift + 2         : komorebic move-to-workspace 1
-alt + shift + 3         : komorebic move-to-workspace 2
-alt + shift + 4         : komorebic move-to-workspace 3
-alt + shift + 5         : komorebic move-to-workspace 4
-alt + shift + 6         : komorebic move-to-workspace 5
-alt + shift + 7         : komorebic move-to-workspace 6
-alt + shift + 8         : komorebic move-to-workspace 7
+win + shift + 1         : komorebic move-to-workspace 0
+win + shift + 2         : komorebic move-to-workspace 1
+win + shift + 3         : komorebic move-to-workspace 2
+win + shift + 4         : komorebic move-to-workspace 3
+win + shift + 5         : komorebic move-to-workspace 4
+win + shift + 6         : komorebic move-to-workspace 5
+win + shift + 7         : komorebic move-to-workspace 6
+win + shift + 8         : komorebic move-to-workspace 7
