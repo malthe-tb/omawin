@@ -20,10 +20,10 @@ ms-vscode.cpptools-extension-pack
 ms-vscode.cpptools-themes
 ms-vscode.makefile-tools
 ms-vscode-remote.remote-containers
-oderwat.indent-rainbow
 openai.chatgpt
 panicbit.cargo
 rust-lang.rust-analyzer
+simonho.kanagawa-paper
 streetsidesoftware.code-spell-checker
 tamasfe.even-better-toml
 usernamehw.errorlens

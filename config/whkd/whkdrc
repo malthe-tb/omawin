@@ -11,7 +11,7 @@ alt + i                 : komorebic toggle-shortcuts
 # The apps will be focused if open, or launched if not open
 # alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
 # alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
-win + return            : $terminal = Get-Process wezterm-gui -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object -First 1; if ($terminal) { (New-Object -ComObject WScript.Shell).AppActivate($terminal.Id) | Out-Null } else { Start-Process 'C:\Program Files\WezTerm\wezterm-gui.exe' }
+win + return            : $terminal = Get-Process WindowsTerminal -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object -First 1; if ($terminal) { (New-Object -ComObject WScript.Shell).AppActivate($terminal.Id) | Out-Null } else { Start-Process wt }
 win + shift + f         : Start-Process explorer.exe
 win + shift + m         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://open.spotify.com/'
 win + shift + a         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://chatgpt.com/'
@@ -20,9 +20,9 @@ win + shift + g         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' '
 win + shift + c         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://calendar.google.com/'
 win + shift + n         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://www.notion.so/'
 win + shift + t         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://todoist.com/app/'
-win + z                 : $wshell = New-Object -ComObject WScript.Shell; $zen = Get-Process zen -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object -First 1; if ($zen) { $wshell.AppActivate($zen.Id) | Out-Null } else { Start-Process 'C:\Program Files\Zen Browser\zen.exe' }
-
-win + q                 : komorebic close
+win + shift + z         : $wshell = New-Object -ComObject WScript.Shell; $zen = Get-Process zen -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object -First 1; if ($zen) { $wshell.AppActivate($zen.Id) | Out-Null } else { Start-Process 'C:\Program Files\Zen Browser\zen.exe' }
+win + w                 : komorebic close
+# win + q                 : komorebic close
 alt + m                 : komorebic minimize
 
 # Focus windows

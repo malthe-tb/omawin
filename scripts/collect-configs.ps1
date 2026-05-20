@@ -68,15 +68,10 @@ $items = @(
         Destination = Join-Path $repoRoot 'config\starship\starship.toml'
     },
     @{
-        Name        = 'WezTerm'
-        Source      = Join-Path $HOME '.config\wezterm'
-        Destination = Join-Path $repoRoot 'config\wezterm'
-        Include     = @('*.lua', '*.toml', '*.json')
-    },
-    @{
-        Name        = 'WezTerm legacy'
-        Source      = Join-Path $HOME '.wezterm.lua'
-        Destination = Join-Path $repoRoot 'config\wezterm\wezterm.lua'
+        Name        = 'Windows Terminal'
+        Source      = Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState'
+        Destination = Join-Path $repoRoot 'config\windows-terminal'
+        Include     = @('settings.json')
     }
 )
 

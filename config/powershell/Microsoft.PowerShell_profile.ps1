@@ -5,6 +5,11 @@ Import-Module PSReadLine -ErrorAction SilentlyContinue
 
 $isInteractiveConsole = [Environment]::UserInteractive -and -not [Console]::IsOutputRedirected
 
+if ($isInteractiveConsole -and $env:WT_SESSION) {
+    $escape = [char]27
+    Write-Host -NoNewline "$escape[?12l$escape[2 q"
+}
+
 if ($isInteractiveConsole -and (Get-Command Set-PSReadLineOption -ErrorAction SilentlyContinue)) {
     $psReadLineOptions = (Get-Command Set-PSReadLineOption).Parameters
 

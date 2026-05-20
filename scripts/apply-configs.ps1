@@ -73,9 +73,9 @@ $items = @(
         Destination = Join-Path $HOME '.config\starship.toml'
     },
     @{
-        Name = 'WezTerm'
-        Source = Join-Path $repoRoot 'config\wezterm'
-        Destination = Join-Path $HOME '.config\wezterm'
+        Name = 'Windows Terminal'
+        Source = Join-Path $repoRoot 'config\windows-terminal'
+        Destination = Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState'
     }
 )
 

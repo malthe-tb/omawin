@@ -19,6 +19,7 @@ Run the full setup:
 ```
 
 That runs software installation, applies configs, and registers the desktop startup task.
+It also applies the wallpaper from `assets\wallpapers\dr15.jpg`.
 
 ## Software
 
@@ -27,7 +28,7 @@ That runs software installation, applies configs, and registers the desktop star
 | [Visual Studio Code](https://code.visualstudio.com/) | Main code editor with extension, settings, and keybinding sync/config support. |
 | [Flow Launcher](https://www.flowlauncher.com/) | Keyboard-driven app launcher and command palette for Windows. |
 | [Everything](https://www.voidtools.com/) | Very fast local file search/indexing tool for Windows. |
-| [WezTerm](https://wezterm.com/) | GPU-accelerated terminal emulator with Lua-based configuration. |
+| [Windows Terminal](https://github.com/microsoft/terminal) | Primary terminal emulator, launched with `Win + Enter`. |
 
 ## Window management
 
@@ -97,6 +98,7 @@ Remove the startup task:
 | [delta](https://github.com/dandavison/delta) | Syntax-highlighting pager for Git diffs, grep, blame, and related output. |
 | [mise](https://mise.jdx.dev/) | Project-local dev tool version manager, environment loader, and task runner. |
 | [CaskaydiaMono Nerd Font](https://www.nerdfonts.com/font-downloads) | Nerd Font patched Cascadia Mono variant for terminal icons and glyphs. |
+| [Bibata Modern Classic](https://github.com/ful1e5/Bibata_Cursor) | Modern Windows cursor theme installed and activated for the current user. |
 
 Some of these should be wired up as aliases after install.
 
@@ -145,7 +147,7 @@ Collected configs currently live under `config\` and include:
 - Git config
 - VS Code settings/snippets
 - Starship, when present
-- WezTerm, when present
+- Windows Terminal settings, when present
 
 ## Config apply
 
@@ -190,10 +192,32 @@ Useful install subsets:
 .\scripts\install-software.ps1 -SkipWindowManagement
 .\scripts\install-software.ps1 -SkipTerminal
 .\scripts\install-software.ps1 -SkipFonts
+.\scripts\install-software.ps1 -SkipCursors
 .\scripts\install-software.ps1 -SkipVSCodeExtensions
 ```
 
-The installer currently uses `winget` for the main apps/tools, downloads `tacky-borders` from the latest GitHub release because it does not currently have a winget package, and downloads `CaskaydiaMono Nerd Font` from the latest Nerd Fonts release.
+The installer currently uses `winget` for the main apps/tools, downloads `tacky-borders` from the latest GitHub release because it does not currently have a winget package, downloads `CaskaydiaMono Nerd Font` from the latest Nerd Fonts release, and installs Bibata Modern Classic from the latest Bibata Cursor GitHub release.
+
+Install or update only the cursor theme:
+
+```powershell
+.\scripts\install-bibata-cursor.ps1
+```
+
+Preview the cursor install:
+
+```powershell
+.\scripts\install-bibata-cursor.ps1 -WhatIf
+```
+
+Useful cursor variants:
+
+```powershell
+.\scripts\install-bibata-cursor.ps1 -Color Ice
+.\scripts\install-bibata-cursor.ps1 -Color Amber
+.\scripts\install-bibata-cursor.ps1 -Size Large
+.\scripts\install-bibata-cursor.ps1 -Right
+```
 
 Current winget packages:
 
@@ -204,7 +228,7 @@ Current winget packages:
 | Visual Studio Code | `Microsoft.VisualStudioCode` |
 | Flow Launcher | `Flow-Launcher.Flow-Launcher` |
 | Everything | `voidtools.Everything` |
-| WezTerm | `wez.wezterm` |
+| Windows Terminal | `Microsoft.WindowsTerminal` |
 | komorebi | `LGUG2Z.komorebi` |
 | masir | `LGUG2Z.masir` |
 | whkd | `LGUG2Z.whkd` |
@@ -222,3 +246,27 @@ Current winget packages:
 Manual follow-up still needed:
 
 - Restart shells/apps after installing tools that update `PATH`.
+
+## Wallpaper
+
+Set the desktop wallpaper and attempt to set the lock screen image:
+
+```powershell
+.\scripts\set-wallpaper.ps1
+```
+
+Preview without changing anything:
+
+```powershell
+.\scripts\set-wallpaper.ps1 -WhatIf
+```
+
+Useful variants:
+
+```powershell
+.\scripts\set-wallpaper.ps1 -Style Fit
+.\scripts\set-wallpaper.ps1 -SkipLockScreen
+.\setup.ps1 -SkipWallpaper
+```
+
+The desktop wallpaper is applied per user. The lock screen uses Windows personalization policy registry keys, so that part may require administrator rights and can vary by Windows edition.

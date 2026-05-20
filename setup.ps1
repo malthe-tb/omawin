@@ -5,6 +5,8 @@ param(
     [switch] $SkipConfigs,
     [switch] $SkipStartup,
     [switch] $SkipFonts,
+    [switch] $SkipCursors,
+    [switch] $SkipWallpaper,
     [switch] $SkipVSCodeExtensions
 )
 
@@ -28,6 +30,7 @@ if (-not $SkipInstall) {
         & (Join-Path $repoRoot 'scripts\install-software.ps1') `
             -WhatIf:$WhatIf `
             -SkipFonts:$SkipFonts `
+            -SkipCursors:$SkipCursors `
             -SkipVSCodeExtensions:$SkipVSCodeExtensions
     }
 }
@@ -37,6 +40,12 @@ if (-not $SkipConfigs) {
         & (Join-Path $repoRoot 'scripts\apply-configs.ps1') `
             -WhatIf:$WhatIf `
             -SkipVSCodeExtensions:$SkipVSCodeExtensions
+    }
+}
+
+if (-not $SkipWallpaper) {
+    Invoke-Step -Name 'Set wallpaper' -Action {
+        & (Join-Path $repoRoot 'scripts\set-wallpaper.ps1') -WhatIf:$WhatIf
     }
 }
 

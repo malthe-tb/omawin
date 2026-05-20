@@ -5,6 +5,7 @@ param(
     [switch] $SkipWindowManagement,
     [switch] $SkipTerminal,
     [switch] $SkipFonts,
+    [switch] $SkipCursors,
     [switch] $SkipTackyBorders,
     [switch] $SkipVSCodeExtensions
 )
@@ -19,7 +20,7 @@ $appPackages = @(
     @{ Name = 'Visual Studio Code'; Id = 'Microsoft.VisualStudioCode' },
     @{ Name = 'Flow Launcher'; Id = 'Flow-Launcher.Flow-Launcher' },
     @{ Name = 'Everything'; Id = 'voidtools.Everything' },
-    @{ Name = 'WezTerm'; Id = 'wez.wezterm' }
+    @{ Name = 'Windows Terminal'; Id = 'Microsoft.WindowsTerminal' }
 )
 
 $windowPackages = @(
@@ -300,6 +301,15 @@ function Install-VSCodeExtensions {
     }
 }
 
+function Install-BibataCursor {
+    if ($SkipCursors) {
+        Write-Host 'Skipped cursor theme.'
+        return
+    }
+
+    & (Join-Path $repoRoot 'scripts\install-bibata-cursor.ps1') -WhatIf:$WhatIf
+}
+
 if (-not $SkipApps) {
     foreach ($package in $appPackages) {
         Install-WingetPackage -Name $package.Name -Id $package.Id
@@ -326,6 +336,7 @@ if (-not $SkipTerminal) {
     }
 }
 
+Install-BibataCursor
 Install-VSCodeExtensions
 
 Write-Host 'Software install script complete.'
