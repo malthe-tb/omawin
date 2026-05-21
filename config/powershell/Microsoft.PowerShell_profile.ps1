@@ -49,6 +49,16 @@ if (Get-Command eza -ErrorAction SilentlyContinue) {
     }
 }
 
+if (Get-Command bat -ErrorAction SilentlyContinue) {
+    Remove-Item Alias:cat -Force -ErrorAction SilentlyContinue
+
+    function global:cat {
+        bat @args
+    }
+}
+
+Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+
 Set-Alias -Name esp -Value C:\esp\v5.4\esp-idf\export.ps1
 $env:IDF_PATH = 'C:\esp\v5.4\esp-idf'
 
