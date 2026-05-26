@@ -26,7 +26,6 @@ if ($isInteractiveConsole -and (Get-Command Set-PSReadLineKeyHandler -ErrorActio
     Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
     try {
-        Set-PSReadLineKeyHandler -Key RightArrow -Function AcceptNextSuggestionWord
         Set-PSReadLineKeyHandler -Key Ctrl+RightArrow -Function AcceptSuggestion
     }
     catch {
