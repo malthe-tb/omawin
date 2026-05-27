@@ -1,215 +1,225 @@
 {
-    "clang-format.executable": "C:\\Espressif\\tools\\esp-clang\\esp-20.1.1_20250829\\esp-clang\\bin\\clang-format.exe",
-    "hediet.vscode-drawio.resizeImages": null,
-    "idf.gitPathWin": "C:\\Users\\malth\\scoop\\apps\\git\\current\\bin\\git.exe",
-    "idf.hasWalkthroughBeenShown": true,
-    "git.autofetch": true,
-    "[c]": {
-        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  "clang-format.executable": "C:\\Espressif\\tools\\esp-clang\\esp-20.1.1_20250829\\esp-clang\\bin\\clang-format.exe",
+  "hediet.vscode-drawio.resizeImages": null,
+  "idf.gitPathWin": "C:\\Users\\malth\\scoop\\apps\\git\\current\\bin\\git.exe",
+  "idf.hasWalkthroughBeenShown": true,
+  "git.autofetch": true,
+  "[c]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "git.enableSmartCommit": true,
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "clangd.arguments": [
+    "--clang-tidy",
+    "--background-index",
+    "--header-insertion=iwyu"
+  ],
+  "editor.formatOnSave": true,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "Tokyo Night",
+  "editor.fontFamily": "'CaskaydiaMono Nerd Font', Consolas, monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.55,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "solid",
+  "vim.useSystemClipboard": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.bracketPairsHorizontal": false,
+  "editor.renderWhitespace": "selection",
+  "editor.stickyScroll.enabled": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "workbench.tree.indent": 18,
+  "workbench.tree.renderIndentGuides": "always",
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "terminal.integrated.fontFamily": "CaskaydiaMono Nerd Font",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.lineHeight": 1.2,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "path": "pwsh.exe",
+      "args": []
+    }
+  },
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "window.menuBarVisibility": "compact",
+  "workbench.statusBar.visible": false,
+  "json.schemaDownload.enable": true,
+  "json.schemaStore.enable": true,
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-s>": true
+  },
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "c"
+      ],
+      "commands": [
+        "editor.action.commentLine"
+      ]
     },
-    "git.enableSmartCommit": true,
-    "[cpp]": {
-        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    {
+      "before": [
+        "<C-s>"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ]
     },
-    "C_Cpp.intelliSenseEngine": "disabled",
-    "clangd.arguments": [
-        "--clang-tidy",
-        "--background-index",
-        "--header-insertion=iwyu"
-    ],
-    "editor.formatOnSave": true,
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.colorTheme": "Andromeda Colorizer",
-    "editor.fontFamily": "'CaskaydiaMono Nerd Font', Consolas, monospace",
-    "editor.fontLigatures": true,
-    "editor.fontSize": 14,
-    "editor.lineHeight": 1.55,
-    "editor.cursorSmoothCaretAnimation": "on",
-    "editor.cursorBlinking": "solid",
-    "vim.useSystemClipboard": true,
-    "editor.bracketPairColorization.enabled": true,
-    // "editor.guides.bracketPairs": true,
-    // "editor.guides.indentation": true,
-    // "editor.minimap.enabled": false,
-    "editor.guides.bracketPairs": "active",
-    "editor.guides.bracketPairsHorizontal": false,
-    "editor.renderWhitespace": "selection",
-    "editor.stickyScroll.enabled": true,
-    "editor.inlayHints.enabled": "offUnlessPressed",
-    "workbench.tree.indent": 18,
-    "workbench.tree.renderIndentGuides": "always",
-    "window.commandCenter": false,
-    "workbench.layoutControl.enabled": false,
-    "terminal.integrated.fontFamily": "CaskaydiaMono Nerd Font",
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.lineHeight": 1.2,
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
-    "terminal.integrated.profiles.windows": {
-        "PowerShell": {
-            "path": "pwsh.exe",
-            "args": []
-        }
+    {
+      "before": [
+        "<leader>",
+        "<leader>"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
     },
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-    "window.menuBarVisibility": "compact",
-    "workbench.statusBar.visible": false,
-    "json.schemaDownload.enable": true,
-    "json.schemaStore.enable": true,
-    "vim.leader": "<space>",
-    "vim.handleKeys": {
-        "<C-s>": true,
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "g"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ]
     },
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<leader>",
-                "g",
-                "c"
-            ],
-            "commands": [
-                "editor.action.commentLine"
-            ]
-        },
-        {
-            "before": [
-                "<C-s>"
-            ],
-            "commands": [
-                "workbench.action.files.save"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-            ],
-            "commands": [
-                "workbench.action.quickOpen"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "s",
-                "g"
-            ],
-            "commands": [
-                "workbench.action.findInFiles"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "b"
-            ],
-            "commands": [
-                "workbench.action.showAllEditors"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "s"
-            ],
-            "commands": [
-                "workbench.action.gotoSymbol"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "w"
-            ],
-            "commands": [
-                "workbench.action.showAllSymbols"
-            ]
-        },
-        {
-            "before": [
-                ":",
-            ],
-            "commands": [
-                "workbench.action.showCommands"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e"
-            ],
-            "commands": [
-                "workbench.view.explorer"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "E"
-            ],
-            "commands": [
-                "workbench.action.toggleSidebarVisibility"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "t"
-            ],
-            "commands": [
-                "workbench.action.terminal.toggleTerminal"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "a",
-                "c"
-            ],
-            "commands": [
-                "chatgpt.openSidebar"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "g",
-                "g"
-            ],
-            "commands": [
-                "workbench.view.scm"
-            ]
-        }
-    ],
-    "vim.insertModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<C-s>"
-            ],
-            "commands": [
-                "workbench.action.files.save"
-            ],
-            "after": [
-                "<Esc>"
-            ]
-        },
-    ],
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<leader>",
-                "g",
-                "c"
-            ],
-            "commands": [
-                "editor.action.commentLine"
-            ]
-        },
-    ],
-    "workbench.activityBar.location": "top",
-    "clangd.path": "c:\\Users\\malth\\AppData\\Roaming\\Code\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\22.1.0\\clangd_22.1.0\\bin\\clangd.exe"
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.showAllEditors"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.gotoSymbol"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.showAllSymbols"
+      ]
+    },
+    {
+      "before": [
+        ":"
+      ],
+      "commands": [
+        "workbench.action.showCommands"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e"
+      ],
+      "commands": [
+        "workbench.view.explorer"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "E"
+      ],
+      "commands": [
+        "workbench.action.toggleSidebarVisibility"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "t"
+      ],
+      "commands": [
+        "workbench.action.terminal.toggleTerminal"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "a",
+        "c"
+      ],
+      "commands": [
+        "chatgpt.openSidebar"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "g"
+      ],
+      "commands": [
+        "workbench.view.scm"
+      ]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<C-s>"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "c"
+      ],
+      "commands": [
+        "editor.action.commentLine"
+      ]
+    }
+  ],
+  "workbench.activityBar.location": "top",
+  "clangd.path": "c:\\Users\\malth\\AppData\\Roaming\\Code\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\22.1.0\\clangd_22.1.0\\bin\\clangd.exe",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#1a1b26",
+    "activityBar.foreground": "#c0caf5",
+    "sideBar.background": "#1a1b26",
+    "sideBar.foreground": "#c0caf5",
+    "editorGroupHeader.tabsBackground": "#1a1b26",
+    "panel.background": "#1a1b26",
+    "terminal.background": "#1a1b26",
+    "statusBar.background": "#24283b",
+    "statusBar.foreground": "#c0caf5",
+    "titleBar.activeBackground": "#1a1b26",
+    "titleBar.activeForeground": "#c0caf5"
+  }
 }

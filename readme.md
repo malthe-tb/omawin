@@ -1,8 +1,11 @@
 # Windows 11 dotfiles
 
-Personal Windows 11 setup inspired by [Omarchy](https://omarchy.org/), but focused on my own tools, configs, and workflow.
+Windows 11 setup inspired by [Omarchy](https://omarchy.org/).
 
-The goal is to be able to clone this repo on a fresh Windows machine, run a setup script, and quickly install/configure the software, shell tools, keyboard shortcuts, and dotfiles I use every day.
+Omarchy is a beautiful, modern, opinionated desktop.
+
+The goal is to deliver a similar experience on Windows 11: beautiful, modern,
+opinionated, and predominantly keyboard-driven.
 
 ## Quick start
 
@@ -26,6 +29,7 @@ It also applies the wallpaper from `assets\wallpapers\dr15.jpg`.
 | Tool | Description |
 | --- | --- |
 | [Visual Studio Code](https://code.visualstudio.com/) | Main code editor with extension, settings, and keybinding sync/config support. |
+| [Zen Browser](https://zen-browser.app/) | Default installed browser, matching the existing Zen-focused web app and browser hotkeys. |
 | [Flow Launcher](https://www.flowlauncher.com/) | Keyboard-driven app launcher and command palette for Windows. |
 | [Everything](https://www.voidtools.com/) | Very fast local file search/indexing tool for Windows. |
 | [Windows Terminal](https://github.com/microsoft/terminal) | Primary terminal emulator, launched with `Win + Enter`. |
@@ -37,14 +41,29 @@ It also applies the wallpaper from `assets\wallpapers\dr15.jpg`.
 | [komorebi](https://github.com/LGUG2Z/komorebi) | Tiling window manager for Windows 10/11. |
 | [whkd](https://github.com/LGUG2Z/whkd) | Simple hotkey daemon commonly used to bind keyboard shortcuts to komorebi commands. |
 | [masir](https://github.com/LGUG2Z/masir) | Companion service in the komorebi ecosystem, started alongside komorebi when enabled. |
-| [YASB](https://yasb.dev/) | Highly configurable Windows status bar with widgets, theming, and komorebi integration. |
 | [tacky-borders](https://github.com/lukeyou05/tacky-borders) | Customizable active/inactive window borders for Windows 10/11. |
 
-Start komorebi with the hotkey daemon and masir enabled:
+## Terminal
 
-```powershell
-komorebic start --whkd --masir
-```
+| Tool | Description |
+| --- | --- |
+| [Starship](https://starship.rs/) | Fast cross-shell prompt with a single config file. |
+| [fzf](https://github.com/junegunn/fzf) | Interactive command-line fuzzy finder for files, history, processes, Git branches, and more. |
+| [zoxide](https://github.com/ajeetdsouza/zoxide) | Smarter `cd` command that learns frequently used directories. |
+| [bat](https://github.com/sharkdp/bat) | `cat` replacement with syntax highlighting and Git integration. |
+| [eza](https://github.com/eza-community/eza) | Modern `ls` replacement with better defaults, colors, icons, and Git-aware output. |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | Fast recursive text search, exposed as `rg`. |
+| [fd](https://github.com/sharkdp/fd) | Simple, fast, user-friendly alternative to `find`. |
+| [delta](https://github.com/dandavison/delta) | Syntax-highlighting pager for Git diffs, grep, blame, and related output. |
+| [mise](https://mise.jdx.dev/) | Project-local dev tool version manager, environment loader, and task runner. |
+| [lazygit](https://github.com/jesseduffield/lazygit) | Terminal UI for Git, used directly and by LazyVim integrations. |
+| [Neovim](https://neovim.io/) | Terminal-native editor with a LazyVim-based repo config under `config\nvim`. |
+| [CaskaydiaMono Nerd Font](https://www.nerdfonts.com/font-downloads) | Nerd Font patched Cascadia Mono variant for terminal icons and glyphs. |
+| [Bibata Modern Classic](https://github.com/ful1e5/Bibata_Cursor) | Modern Windows cursor theme installed and activated for the current user. |
+
+The PowerShell profile wires common shortcuts such as `n` for Neovim, `ls` via
+eza, `cat` via bat, and PowerShell-native wrappers for `cp`, `mv`, `rm`,
+`mkdir`, and `touch`.
 
 ### Startup
 
@@ -62,66 +81,9 @@ That creates a Scheduled Task named `\Dotfiles\Dotfiles Desktop Startup` for the
 
 The startup script currently starts:
 
-- `komorebic start --whkd --masir`
-- `yasbc start --silent`
+- `komorebic start --whkd --masir --bar`
 - `tacky-borders`
 
-Test the startup task without rebooting:
-
-```powershell
-Start-ScheduledTask -TaskPath '\Dotfiles\' -TaskName 'Dotfiles Desktop Startup'
-```
-
-View the startup log:
-
-```powershell
-Get-Content .\var\logs\desktop-startup.log
-```
-
-Remove the startup task:
-
-```powershell
-.\scripts\unregister-desktop-startup.ps1
-```
-
-## Terminal
-
-| Tool | Description |
-| --- | --- |
-| [Starship](https://starship.rs/) | Fast cross-shell prompt with a single config file. |
-| [fzf](https://github.com/junegunn/fzf) | Interactive command-line fuzzy finder for files, history, processes, Git branches, and more. |
-| [zoxide](https://github.com/ajeetdsouza/zoxide) | Smarter `cd` command that learns frequently used directories. |
-| [bat](https://github.com/sharkdp/bat) | `cat` replacement with syntax highlighting and Git integration. |
-| [eza](https://github.com/eza-community/eza) | Modern `ls` replacement with better defaults, colors, icons, and Git-aware output. |
-| [ripgrep](https://github.com/BurntSushi/ripgrep) | Fast recursive text search, exposed as `rg`. |
-| [fd](https://github.com/sharkdp/fd) | Simple, fast, user-friendly alternative to `find`. |
-| [delta](https://github.com/dandavison/delta) | Syntax-highlighting pager for Git diffs, grep, blame, and related output. |
-| [mise](https://mise.jdx.dev/) | Project-local dev tool version manager, environment loader, and task runner. |
-| [CaskaydiaMono Nerd Font](https://www.nerdfonts.com/font-downloads) | Nerd Font patched Cascadia Mono variant for terminal icons and glyphs. |
-| [Bibata Modern Classic](https://github.com/ful1e5/Bibata_Cursor) | Modern Windows cursor theme installed and activated for the current user. |
-
-Some of these should be wired up as aliases after install.
-
-## Keyboard
-
-Desired Caps Lock layer:
-
-| Shortcut | Action |
-| --- | --- |
-| `Caps Lock` | `F11` / fullscreen |
-| `Caps Lock + h` | Left arrow |
-| `Caps Lock + j` | Down arrow |
-| `Caps Lock + k` | Up arrow |
-| `Caps Lock + l` | Right arrow |
-| `Caps Lock + Enter` | Open terminal |
-| `Caps Lock + Space` | Open launcher |
-
-## Plan
-
-- Store app and shell configurations in this repo.
-- Add setup scripts for installing software and applying configs on a new Windows 11 machine.
-- Prefer repeatable package-manager installs where possible.
-- Keep manual steps documented when a setting cannot be automated cleanly.
 
 ## Config collection
 
@@ -141,12 +103,12 @@ Collected configs currently live under `config\` and include:
 
 - `komorebi`
 - `whkd`
-- `yasb`
 - `tacky-borders`
 - PowerShell profile
 - Git config
 - VS Code settings/snippets
 - Starship, when present
+- Neovim, when present
 - Windows Terminal settings, when present
 
 ## Config apply
@@ -170,6 +132,41 @@ Skip VS Code extension installation:
 ```
 
 By default, existing destination files/folders are backed up under `var\backups\` before being overwritten.
+
+## Themes
+
+Generate repo configs for a supported theme:
+
+```powershell
+.\scripts\set-theme.ps1 -Name tokyo-night
+.\scripts\set-theme.ps1 -Name gruvbox
+```
+
+Preview a theme switch without changing files:
+
+```powershell
+.\scripts\set-theme.ps1 -Name gruvbox -WhatIf
+```
+
+Generate the configs, apply them to the current user, and set the themed wallpaper:
+
+```powershell
+.\scripts\set-theme.ps1 -Name tokyo-night -Apply
+```
+
+Also set the current user's Windows accent color from the theme:
+
+```powershell
+.\scripts\set-theme.ps1 -Name gruvbox -Apply -SetWindowsAccent
+```
+
+Supported themes currently include:
+
+- `tokyo-night`
+- `gruvbox`
+
+Theme switching currently updates the repo-managed configs for komorebi,
+komorebi bar, tacky-borders, Windows Terminal, VS Code, and Neovim.
 
 ## Software install
 
@@ -226,13 +223,13 @@ Current winget packages:
 | Git | `Git.Git` |
 | PowerShell 7 | `Microsoft.PowerShell` |
 | Visual Studio Code | `Microsoft.VisualStudioCode` |
+| Zen Browser | `Zen-Team.Zen-Browser` |
 | Flow Launcher | `Flow-Launcher.Flow-Launcher` |
 | Everything | `voidtools.Everything` |
 | Windows Terminal | `Microsoft.WindowsTerminal` |
 | komorebi | `LGUG2Z.komorebi` |
 | masir | `LGUG2Z.masir` |
 | whkd | `LGUG2Z.whkd` |
-| YASB | `AmN.yasb` |
 | Starship | `Starship.Starship` |
 | fzf | `junegunn.fzf` |
 | zoxide | `ajeetdsouza.zoxide` |
@@ -242,6 +239,8 @@ Current winget packages:
 | fd | `sharkdp.fd` |
 | delta | `dandavison.delta` |
 | mise | `jdx.mise` |
+| lazygit | `JesseDuffield.lazygit` |
+| Neovim | `Neovim.Neovim` |
 
 Manual follow-up still needed:
 

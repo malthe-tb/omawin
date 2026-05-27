@@ -18,6 +18,7 @@ $appPackages = @(
     @{ Name = 'Git'; Id = 'Git.Git' },
     @{ Name = 'PowerShell 7'; Id = 'Microsoft.PowerShell' },
     @{ Name = 'Visual Studio Code'; Id = 'Microsoft.VisualStudioCode' },
+    @{ Name = 'Zen Browser'; Id = 'Zen-Team.Zen-Browser' },
     @{ Name = 'Flow Launcher'; Id = 'Flow-Launcher.Flow-Launcher' },
     @{ Name = 'Everything'; Id = 'voidtools.Everything' },
     @{ Name = 'Windows Terminal'; Id = 'Microsoft.WindowsTerminal' }
@@ -26,8 +27,7 @@ $appPackages = @(
 $windowPackages = @(
     @{ Name = 'komorebi'; Id = 'LGUG2Z.komorebi' },
     @{ Name = 'masir'; Id = 'LGUG2Z.masir' },
-    @{ Name = 'whkd'; Id = 'LGUG2Z.whkd' },
-    @{ Name = 'YASB'; Id = 'AmN.yasb' }
+    @{ Name = 'whkd'; Id = 'LGUG2Z.whkd' }
 )
 
 $terminalPackages = @(
@@ -39,7 +39,9 @@ $terminalPackages = @(
     @{ Name = 'ripgrep'; Id = 'BurntSushi.ripgrep.MSVC' },
     @{ Name = 'fd'; Id = 'sharkdp.fd' },
     @{ Name = 'delta'; Id = 'dandavison.delta' },
-    @{ Name = 'mise'; Id = 'jdx.mise' }
+    @{ Name = 'mise'; Id = 'jdx.mise' },
+    @{ Name = 'lazygit'; Id = 'JesseDuffield.lazygit' },
+    @{ Name = 'Neovim'; Id = 'Neovim.Neovim' }
 )
 
 function Test-Command {

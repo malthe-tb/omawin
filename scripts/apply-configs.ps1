@@ -23,11 +23,6 @@ $items = @(
         Destination = Join-Path $HOME '.config\whkdrc'
     },
     @{
-        Name = 'yasb'
-        Source = Join-Path $repoRoot 'config\yasb'
-        Destination = Join-Path $HOME '.config\yasb'
-    },
-    @{
         Name = 'tacky-borders'
         Source = Join-Path $repoRoot 'config\tacky-borders'
         Destination = Join-Path $HOME '.config\tacky-borders'
@@ -71,6 +66,11 @@ $items = @(
         Name = 'Starship'
         Source = Join-Path $repoRoot 'config\starship\starship.toml'
         Destination = Join-Path $HOME '.config\starship.toml'
+    },
+    @{
+        Name = 'Neovim'
+        Source = Join-Path $repoRoot 'config\nvim'
+        Destination = Join-Path $env:LOCALAPPDATA 'nvim'
     },
     @{
         Name = 'Windows Terminal'

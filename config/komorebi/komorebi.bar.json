@@ -4,7 +4,7 @@
   "font_family": "CaskaydiaMono Nerd Font",
   "theme": {
     "palette": "Base16",
-    "name": "Ashes",
+    "name": "TokyoNightDark",
     "accent": "Base0D"
   },
   "left_widgets": [
@@ -26,30 +26,22 @@
   ],
   "right_widgets": [
     {
-      "Update": {
-        "enable": true
-      }
-    },
-    {
       "Media": {
         "enable": true
       }
     },
     {
-      "Storage": {
-        "enable": true
+      "Cpu": {
+        "enable": true,
+        "label_prefix": "Icon",
+        "data_refresh_interval": 2
       }
     },
     {
       "Memory": {
-        "enable": true
-      }
-    },
-    {
-      "Network": {
         "enable": true,
-        "show_activity": true,
-        "show_total_activity": true
+        "label_prefix": "Icon",
+        "data_refresh_interval": 5
       }
     },
     {

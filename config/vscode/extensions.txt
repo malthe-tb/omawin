@@ -1,4 +1,4 @@
-﻿akiramiyakoda.cppincludeguard
+akiramiyakoda.cppincludeguard
 avetis.tokyo-night
 cs128.cs128-clang-tidy
 eamodio.gitlens
@@ -32,3 +32,4 @@ vscode-icons-team.vscode-icons
 vscodevim.vim
 xaver.clang-format
 zainchen.json
+jdinhlife.gruvbox

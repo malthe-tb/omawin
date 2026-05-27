@@ -56,6 +56,46 @@ if (Get-Command bat -ErrorAction SilentlyContinue) {
     }
 }
 
+if (Get-Command nvim -ErrorAction SilentlyContinue) {
+    function global:n {
+        if ($args.Count -eq 0) {
+            nvim .
+            return
+        }
+
+        nvim @args
+    }
+}
+
+Remove-Item Alias:cp, Alias:mv, Alias:rm, Alias:mkdir -Force -ErrorAction SilentlyContinue
+
+function global:cp {
+    Copy-Item @args
+}
+
+function global:mv {
+    Move-Item @args
+}
+
+function global:rm {
+    Remove-Item @args
+}
+
+function global:mkdir {
+    New-Item -ItemType Directory @args
+}
+
+function global:touch {
+    foreach ($path in $args) {
+        if (Test-Path -LiteralPath $path) {
+            (Get-Item -LiteralPath $path).LastWriteTime = Get-Date
+            continue
+        }
+
+        New-Item -ItemType File -Path $path | Out-Null
+    }
+}
+
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
 
 Set-Alias -Name esp -Value C:\esp\v5.4\esp-idf\export.ps1

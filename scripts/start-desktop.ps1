@@ -96,15 +96,9 @@ Write-Log 'Desktop startup begin'
 
 $Env:KOMOREBI_CONFIG_HOME = Join-Path $HOME '.config\komorebi'
 $komorebicPath = Join-Path $env:ProgramFiles 'komorebi\bin\komorebic.exe'
-$yasbcPath = Join-Path $env:ProgramFiles 'YASB\yasbc.exe'
 $tackyBordersPath = Join-Path $env:LOCALAPPDATA 'Programs\tacky-borders\tacky-borders.exe'
 
 if ($Restart) {
-    if (Test-Command 'yasbc') {
-        Write-Log 'STOP: YASB'
-        & yasbc stop --silent 2>&1 | ForEach-Object { Write-Log "yasbc: $_" }
-    }
-
     if (Test-Command 'komorebic') {
         Write-Log 'STOP: komorebi'
         & komorebic stop 2>&1 | ForEach-Object { Write-Log "komorebic: $_" }
@@ -113,8 +107,7 @@ if ($Restart) {
 
 Get-Process -Name 'tacky-borders' -ErrorAction SilentlyContinue | Stop-Process -Force
 
-Start-Command -Name 'komorebi' -Command 'komorebic' -Arguments @('start', '--whkd', '--masir') -FallbackPaths @($komorebicPath) -Wait
-Start-Command -Name 'YASB' -Command 'yasbc' -Arguments @('start', '--silent') -FallbackPaths @($yasbcPath) -DelaySeconds 2 -Wait
+Start-Command -Name 'komorebi' -Command 'komorebic' -Arguments @('start', '--whkd', '--masir', '--bar') -FallbackPaths @($komorebicPath) -Wait
 Start-Command -Name 'tacky-borders' -Command 'tacky-borders' -FallbackPaths @($tackyBordersPath) -DelaySeconds 5
 
 Write-Log 'Desktop startup complete'
