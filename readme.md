@@ -106,7 +106,7 @@ Collected configs currently live under `config\` and include:
 - `tacky-borders`
 - PowerShell profile
 - Git config
-- VS Code settings/snippets
+- VS Code settings/keybindings/snippets
 - Starship, when present
 - Neovim, when present
 - Windows Terminal settings, when present

@@ -54,8 +54,37 @@
   "json.schemaDownload.enable": true,
   "json.schemaStore.enable": true,
   "vim.leader": "<space>",
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.ignorecase": true,
+  "vim.smartcase": true,
+  "vim.sneak": true,
+  "vim.surround": true,
+  "vim.replaceWithRegister": true,
+  "vim.camelCaseMotion.enable": true,
+  "vim.argumentObjectSeparators": [
+    ",",
+    ";"
+  ],
+  "vim.argumentObjectOpeningDelimiters": [
+    "(",
+    "["
+  ],
+  "vim.argumentObjectClosingDelimiters": [
+    ")",
+    "]"
+  ],
   "vim.handleKeys": {
-    "<C-s>": true
+    "<C-a>": false,
+    "<C-c>": false,
+    "<C-f>": false,
+    "<C-s>": true,
+    "<C-v>": false,
+    "<C-x>": false,
+    "<C-y>": false,
+    "<C-z>": false
   },
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -180,9 +209,138 @@
       "commands": [
         "workbench.view.scm"
       ]
+    },
+    {
+      "before": [
+        "g",
+        "d"
+      ],
+      "commands": [
+        "editor.action.revealDefinition"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.goToReferences"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "i"
+      ],
+      "commands": [
+        "editor.action.goToImplementation"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.showHover"
+      ]
+    },
+    {
+      "before": [
+        "[",
+        "d"
+      ],
+      "commands": [
+        "editor.action.marker.prev"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "d"
+      ],
+      "commands": [
+        "editor.action.marker.next"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "h"
+      ],
+      "after": [
+        "^"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "l"
+      ],
+      "after": [
+        "$"
+      ]
+    },
+    {
+      "before": [
+        "<C-n>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    },
+    {
+      "before": [
+        "u"
+      ],
+      "after": [
+        "u"
+      ]
+    },
+    {
+      "before": [
+        "<C-r>"
+      ],
+      "after": [
+        "<C-r>"
+      ]
+    },
+    {
+      "before": [
+        "<A-j>"
+      ],
+      "commands": [
+        "editor.action.moveLinesDownAction"
+      ]
+    },
+    {
+      "before": [
+        "<A-k>"
+      ],
+      "commands": [
+        "editor.action.moveLinesUpAction"
+      ]
     }
   ],
   "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    },
+    {
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    },
     {
       "before": [
         "<C-s>"
@@ -192,6 +350,22 @@
       ],
       "after": [
         "<Esc>"
+      ]
+    },
+    {
+      "before": [
+        "<A-j>"
+      ],
+      "commands": [
+        "editor.action.moveLinesDownAction"
+      ]
+    },
+    {
+      "before": [
+        "<A-k>"
+      ],
+      "commands": [
+        "editor.action.moveLinesUpAction"
       ]
     }
   ],
@@ -205,8 +379,58 @@
       "commands": [
         "editor.action.commentLine"
       ]
+    },
+    {
+      "before": [
+        ">"
+      ],
+      "after": [
+        ">",
+        "g",
+        "v"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "after": [
+        "<",
+        "g",
+        "v"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "c"
+      ],
+      "commands": [
+        "editor.action.commentLine"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "h"
+      ],
+      "after": [
+        "^"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "l"
+      ],
+      "after": [
+        "$"
+      ]
     }
   ],
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
   "workbench.activityBar.location": "top",
   "clangd.path": "c:\\Users\\malth\\AppData\\Roaming\\Code\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\22.1.0\\clangd_22.1.0\\bin\\clangd.exe",
   "workbench.colorCustomizations": {
