@@ -87,13 +87,13 @@ global:
   #       Each value (dark/light) can be a hex code, "accent", or a gradient.
   #       Borders automatically update when the system theme changes.
   active_color:
-    colors: ["#7aa2f7", "#bb9af7"]
+    colors: ["#f38d70", "#fd6883"]
     direction:
       start: [0.0, 0.0]
       end: [1.0, 1.0]
 
   inactive_color:
-    colors: ["#3b4261", "#414868"]
+    colors: ["#5b4a45", "#403e41"]
     direction:
       start: [0.0, 1.0]
       end: [1.0, 0.0]
@@ -102,9 +102,9 @@ global:
   #   - active_color is used for komorebi's "Single" window kind
   #   - inactive_color is used for komorebi's "Unfocused" window kind
   komorebi_colors:
-    stack_color: "#bb9af7"
-    monocle_color: "#bb9af7"
-    floating_color: "#7dcfff"
+    stack_color: "#fd6883"
+    monocle_color: "#a8a9eb"
+    floating_color: "#85dacc"
     enabled: True
 
   # animations: Configure animation behavior for window borders

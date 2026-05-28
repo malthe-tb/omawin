@@ -51,6 +51,7 @@ Preview a theme switch:
 
 ```powershell
 .\scripts\set-theme.ps1 -Name gruvbox -WhatIf
+.\scripts\set-theme.ps1 -Name ristretto -WhatIf
 ```
 
 Generate repo configs for a theme without changing the live machine:

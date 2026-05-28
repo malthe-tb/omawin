@@ -248,10 +248,12 @@ function Update-VSCodeConfig {
 
 function Update-NeovimConfig {
     $path = Join-Path $repoRoot 'config\nvim\lua\config\omawin-theme.lua'
+    $monokaiProFilter = if ($theme.neovimMonokaiProFilter) { "`"$($theme.neovimMonokaiProFilter)`"" } else { 'nil' }
     $content = @"
 return {
   name = "$($theme.name)",
   colorscheme = "$($theme.neovimColorscheme)",
+  monokai_pro_filter = $monokaiProFilter,
 }
 "@
 

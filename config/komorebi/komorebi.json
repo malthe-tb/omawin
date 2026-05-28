@@ -10,9 +10,9 @@
   "transparency_alpha": 230,
   "theme": {
     "palette": "Base16",
-    "name": "TokyoNightDark",
+    "name": "Monokai",
     "unfocused_border": "Base03",
-    "bar_accent": "Base0D"
+    "bar_accent": "Base09"
   },
   "monitors": [
     {

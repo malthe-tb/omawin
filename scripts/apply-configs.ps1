@@ -13,68 +13,68 @@ $documents = [Environment]::GetFolderPath('MyDocuments')
 
 $items = @(
     @{
-        Name = 'komorebi'
-        Source = Join-Path $repoRoot 'config\komorebi'
+        Name        = 'komorebi'
+        Source      = Join-Path $repoRoot 'config\komorebi'
         Destination = Join-Path $HOME '.config\komorebi'
     },
     @{
-        Name = 'whkd'
-        Source = Join-Path $repoRoot 'config\whkd\whkdrc'
+        Name        = 'whkd'
+        Source      = Join-Path $repoRoot 'config\whkd\whkdrc'
         Destination = Join-Path $HOME '.config\whkdrc'
     },
     @{
-        Name = 'tacky-borders'
-        Source = Join-Path $repoRoot 'config\tacky-borders'
+        Name        = 'tacky-borders'
+        Source      = Join-Path $repoRoot 'config\tacky-borders'
         Destination = Join-Path $HOME '.config\tacky-borders'
     },
     @{
-        Name = 'PowerShell 7 profile'
-        Source = Join-Path $repoRoot 'config\powershell\Microsoft.PowerShell_profile.ps1'
+        Name        = 'PowerShell 7 profile'
+        Source      = Join-Path $repoRoot 'config\powershell\Microsoft.PowerShell_profile.ps1'
         Destination = Join-Path $documents 'PowerShell\Microsoft.PowerShell_profile.ps1'
     },
     @{
-        Name = 'Windows PowerShell profile'
-        Source = Join-Path $repoRoot 'config\powershell\Microsoft.PowerShell_profile.ps1'
+        Name        = 'Windows PowerShell profile'
+        Source      = Join-Path $repoRoot 'config\powershell\Microsoft.PowerShell_profile.ps1'
         Destination = Join-Path $documents 'WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
     },
     @{
-        Name = 'Git config'
-        Source = Join-Path $repoRoot 'config\git\.gitconfig'
+        Name        = 'Git config'
+        Source      = Join-Path $repoRoot 'config\git\.gitconfig'
         Destination = Join-Path $HOME '.gitconfig'
     },
     @{
-        Name = 'VS Code settings'
-        Source = Join-Path $repoRoot 'config\vscode\settings.json'
+        Name        = 'VS Code settings'
+        Source      = Join-Path $repoRoot 'config\vscode\settings.json'
         Destination = Join-Path $env:APPDATA 'Code\User\settings.json'
     },
     @{
-        Name = 'VS Code keybindings'
-        Source = Join-Path $repoRoot 'config\vscode\keybindings.json'
+        Name        = 'VS Code keybindings'
+        Source      = Join-Path $repoRoot 'config\vscode\keybindings.json'
         Destination = Join-Path $env:APPDATA 'Code\User\keybindings.json'
     },
     @{
-        Name = 'VS Code MCP config'
-        Source = Join-Path $repoRoot 'config\vscode\mcp.json'
+        Name        = 'VS Code MCP config'
+        Source      = Join-Path $repoRoot 'config\vscode\mcp.json'
         Destination = Join-Path $env:APPDATA 'Code\User\mcp.json'
     },
     @{
-        Name = 'VS Code snippets'
-        Source = Join-Path $repoRoot 'config\vscode\snippets'
+        Name        = 'VS Code snippets'
+        Source      = Join-Path $repoRoot 'config\vscode\snippets'
         Destination = Join-Path $env:APPDATA 'Code\User\snippets'
     },
     @{
-        Name = 'Starship'
-        Source = Join-Path $repoRoot 'config\starship\starship.toml'
+        Name        = 'Starship'
+        Source      = Join-Path $repoRoot 'config\starship\starship.toml'
         Destination = Join-Path $HOME '.config\starship.toml'
     },
     @{
-        Name = 'Neovim'
-        Source = Join-Path $repoRoot 'config\nvim'
+        Name        = 'Neovim'
+        Source      = Join-Path $repoRoot 'config\nvim'
         Destination = Join-Path $env:LOCALAPPDATA 'nvim'
     },
     @{
-        Name = 'Windows Terminal'
-        Source = Join-Path $repoRoot 'config\windows-terminal'
+        Name        = 'Windows Terminal'
+        Source      = Join-Path $repoRoot 'config\windows-terminal'
         Destination = Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState'
     }
 )

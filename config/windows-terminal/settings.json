@@ -26,7 +26,7 @@
   ],
   "profiles": {
     "defaults": {
-      "colorScheme": "Omawin Tokyo Night",
+      "colorScheme": "Omawin Ristretto",
       "cursorShape": "filledBox",
       "font": {
         "face": "CaskaydiaMono Nerd Font"
@@ -61,27 +61,27 @@
   },
   "schemes": [
     {
-      "name": "Omawin Tokyo Night",
-      "background": "#1a1b26",
-      "foreground": "#c0caf5",
-      "selectionBackground": "#414868",
-      "cursorColor": "#7aa2f7",
-      "black": "#15161e",
-      "red": "#f7768e",
-      "green": "#9ece6a",
-      "yellow": "#e0af68",
-      "blue": "#7aa2f7",
-      "purple": "#bb9af7",
-      "cyan": "#7dcfff",
-      "white": "#a9b1d6",
-      "brightBlack": "#414868",
-      "brightRed": "#f7768e",
-      "brightGreen": "#9ece6a",
-      "brightYellow": "#e0af68",
-      "brightBlue": "#7aa2f7",
-      "brightPurple": "#bb9af7",
-      "brightCyan": "#7dcfff",
-      "brightWhite": "#c0caf5"
+      "name": "Omawin Ristretto",
+      "background": "#2c2525",
+      "foreground": "#e6d9db",
+      "selectionBackground": "#403e41",
+      "cursorColor": "#f38d70",
+      "black": "#72696a",
+      "red": "#fd6883",
+      "green": "#adda78",
+      "yellow": "#f9cc6c",
+      "blue": "#f38d70",
+      "purple": "#a8a9eb",
+      "cyan": "#85dacc",
+      "white": "#e6d9db",
+      "brightBlack": "#948a8b",
+      "brightRed": "#ff8297",
+      "brightGreen": "#c8e292",
+      "brightYellow": "#fcd675",
+      "brightBlue": "#f8a788",
+      "brightPurple": "#bebffd",
+      "brightCyan": "#9bf1e1",
+      "brightWhite": "#f1e5e7"
     }
   ],
   "themes": []

@@ -140,6 +140,7 @@ Generate repo configs for a supported theme:
 ```powershell
 .\scripts\set-theme.ps1 -Name tokyo-night
 .\scripts\set-theme.ps1 -Name gruvbox
+.\scripts\set-theme.ps1 -Name ristretto
 ```
 
 Preview a theme switch without changing files:
@@ -164,6 +165,7 @@ Supported themes currently include:
 
 - `tokyo-night`
 - `gruvbox`
+- `ristretto`
 
 Theme switching currently updates the repo-managed configs for komorebi,
 komorebi bar, tacky-borders, Windows Terminal, VS Code, and Neovim.

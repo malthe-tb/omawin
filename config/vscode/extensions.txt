@@ -33,3 +33,4 @@ vscodevim.vim
 xaver.clang-format
 zainchen.json
 jdinhlife.gruvbox
+monokai.theme-monokai-pro-vscode
