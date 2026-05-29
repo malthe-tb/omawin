@@ -18,6 +18,11 @@ $items = @(
         Destination = Join-Path $HOME '.config\komorebi'
     },
     @{
+        Name        = 'omawin command surface'
+        Source      = Join-Path $repoRoot 'bin'
+        Destination = Join-Path $HOME '.config\omawin\bin'
+    },
+    @{
         Name        = 'whkd'
         Source      = Join-Path $repoRoot 'config\whkd\whkdrc'
         Destination = Join-Path $HOME '.config\whkdrc'
@@ -197,6 +202,18 @@ foreach ($item in $items) {
     }
 
     Write-Host "Skipped $($item.Name): source not found ($($item.Source))"
+}
+
+$omawinConfigDir = Join-Path $HOME '.config\omawin'
+$omawinRepoRootFile = Join-Path $omawinConfigDir 'repo-root.txt'
+
+if ($WhatIf) {
+    Write-Host "Would write file: $omawinRepoRootFile"
+}
+else {
+    New-Item -ItemType Directory -Force -Path $omawinConfigDir | Out-Null
+    Set-Content -LiteralPath $omawinRepoRootFile -Value $repoRoot -Encoding UTF8
+    Write-Host "Wrote file: $omawinRepoRootFile"
 }
 
 if (-not $SkipVSCodeExtensions) {

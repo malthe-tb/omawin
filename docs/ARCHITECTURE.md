@@ -25,8 +25,8 @@ idempotent, and usable directly.
 | --- | --- | --- |
 | Implementation scripts | Perform actual setup, config, startup, wallpaper, and install work. | `setup.ps1`, `scripts\apply-configs.ps1`, `scripts\install-software.ps1` |
 | Command router | Provide a stable `omawin <group> <command>` interface and dispatch to scripts. | `bin\omawin.ps1`, `bin\omawin.cmd` |
-| Terminal UI | Let users discover and run common workflows from a terminal. | `omawin tui`, likely `fzf`-backed first |
-| GUI/launcher menu | Let users run the same workflows from a graphical picker. | `omawin menu`, Flow Launcher integration first |
+| Terminal UI | Let users discover and run common workflows from a terminal. | Future `omawin tui`, likely `fzf`-backed |
+| GUI/launcher menu | Let users run the same workflows from a graphical picker. | `omawin menu`, Windows Forms first, Flow Launcher integration later |
 | Desktop integrations | Bind common commands to keys, bar clicks, and startup. | `whkd`, komorebi bar, Scheduled Task |
 
 ## Command Router
@@ -45,7 +45,6 @@ omawin wallpaper set
 omawin theme list
 omawin theme set <name>
 omawin commands
-omawin tui
 omawin menu
 ```
 
@@ -63,14 +62,15 @@ Useful metadata fields for future command discovery:
 
 ## TUI And GUI
 
-The TUI should be the first interactive surface because it is easier to build,
-debug, and keep close to the script behavior. It should call `omawin` routes
-rather than invoking implementation scripts directly.
+The command router should be the first stable surface. Interactive views should
+call `omawin` routes rather than invoking implementation scripts directly.
 
-The GUI should start as a launcher/menu integration rather than a standalone
-application. Flow Launcher can act as the Windows equivalent of Omarchy's
-Walker-centered menu. A custom GUI can come later if the command model proves
-stable and there are workflows that need richer state, previews, or forms.
+The GUI starts as a small keyboard-first menu rather than a standalone settings
+application. The first version uses Windows Forms so it works with the stock
+Windows scripting stack. Flow Launcher can later become the closer Windows
+equivalent of Omarchy's Walker-centered menu. A custom GUI can come later if the
+command model proves stable and there are workflows that need richer state,
+previews, or forms.
 
 ## Windows Translation
 

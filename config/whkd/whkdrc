@@ -12,6 +12,7 @@ alt + i                 : komorebic toggle-shortcuts
 # alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
 # alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
 win + return            : $terminal = Get-Process WindowsTerminal -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object -First 1; if ($terminal) { (New-Object -ComObject WScript.Shell).AppActivate($terminal.Id) | Out-Null } else { Start-Process wt }
+win + alt + space       : Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$HOME\.config\omawin\bin\omawin.ps1`" menu" -WindowStyle Hidden
 win + shift + f         : Start-Process explorer.exe
 win + shift + m         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://open.spotify.com/'
 win + shift + a         : Start-Process 'C:\Program Files\Zen Browser\zen.exe' 'https://chatgpt.com/'

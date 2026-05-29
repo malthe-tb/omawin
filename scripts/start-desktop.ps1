@@ -1,6 +1,8 @@
 [CmdletBinding()]
 param(
-    [switch] $Restart
+    [switch] $Restart,
+    [int] $StartupDelaySeconds = 8,
+    [int] $HealthCheckSeconds = 20
 )
 
 $ErrorActionPreference = 'Stop'
@@ -44,6 +46,15 @@ function Resolve-CommandPath {
     }
 
     return $null
+}
+
+function Add-PathEntry {
+    param([string] $Path)
+
+    if ((Test-Path -LiteralPath $Path -PathType Container) -and
+        (($env:Path -split ';') -notcontains $Path)) {
+        $env:Path = "$Path;$env:Path"
+    }
 }
 
 function Start-Command {
@@ -92,11 +103,48 @@ function Start-Command {
     }
 }
 
+function Test-ProcessRunning {
+    param([string] $Name)
+
+    $null -ne (Get-Process -Name $Name -ErrorAction SilentlyContinue)
+}
+
+function Wait-ProcessRunning {
+    param(
+        [string] $Name,
+        [int] $TimeoutSeconds = 10
+    )
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+
+    do {
+        if (Test-ProcessRunning -Name $Name) {
+            Write-Log "OK: $Name is running"
+            return $true
+        }
+
+        Start-Sleep -Milliseconds 500
+    } while ((Get-Date) -lt $deadline)
+
+    Write-Log "WARN: $Name is not running after $TimeoutSeconds seconds"
+    return $false
+}
+
 Write-Log 'Desktop startup begin'
 
 $Env:KOMOREBI_CONFIG_HOME = Join-Path $HOME '.config\komorebi'
 $komorebicPath = Join-Path $env:ProgramFiles 'komorebi\bin\komorebic.exe'
+$komorebiBin = Split-Path -Parent $komorebicPath
+$tackyBordersDir = Join-Path $env:LOCALAPPDATA 'Programs\tacky-borders'
 $tackyBordersPath = Join-Path $env:LOCALAPPDATA 'Programs\tacky-borders\tacky-borders.exe'
+
+Add-PathEntry -Path $komorebiBin
+Add-PathEntry -Path $tackyBordersDir
+
+if ($StartupDelaySeconds -gt 0) {
+    Write-Log "WAIT: delaying startup by $StartupDelaySeconds seconds"
+    Start-Sleep -Seconds $StartupDelaySeconds
+}
 
 if ($Restart) {
     if (Test-Command 'komorebic') {
@@ -109,5 +157,11 @@ Get-Process -Name 'tacky-borders' -ErrorAction SilentlyContinue | Stop-Process -
 
 Start-Command -Name 'komorebi' -Command 'komorebic' -Arguments @('start', '--whkd', '--masir', '--bar') -FallbackPaths @($komorebicPath) -Wait
 Start-Command -Name 'tacky-borders' -Command 'tacky-borders' -FallbackPaths @($tackyBordersPath) -DelaySeconds 5
+
+Wait-ProcessRunning -Name 'komorebi' -TimeoutSeconds $HealthCheckSeconds | Out-Null
+Wait-ProcessRunning -Name 'whkd' -TimeoutSeconds 5 | Out-Null
+Wait-ProcessRunning -Name 'komorebi-bar' -TimeoutSeconds 5 | Out-Null
+Wait-ProcessRunning -Name 'masir' -TimeoutSeconds 5 | Out-Null
+Wait-ProcessRunning -Name 'tacky-borders' -TimeoutSeconds 5 | Out-Null
 
 Write-Log 'Desktop startup complete'

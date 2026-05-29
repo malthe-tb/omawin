@@ -9,6 +9,8 @@ setup should become next.
 - Tighten the default desktop shell: `komorebi`, `whkd`, `masir`, and
   `tacky-borders` should feel like one integrated environment.
 - Setup missing essential software `WSL`
+- Expand the `omawin` command router and keyboard menu into the main command
+  surface for daily desktop actions.
 - Improve the theme and styling story by translating Omarchy's theme model to
   Windows-native targets such as komorebi bar, Windows Terminal, VS Code,
   PowerShell, wallpaper, cursor, and borders.
@@ -19,9 +21,9 @@ setup should become next.
 
 ## Next
 
-- Build an `omawin` TUI for common workflows: setup checks, config
-  apply/collect, desktop stack inspection, theme or wallpaper switching, and
-  access to relevant logs and config files.
+- Add a richer `omawin` TUI or Flow Launcher integration for common workflows:
+  setup checks, config apply/collect, desktop stack inspection, theme or
+  wallpaper switching, and access to relevant logs and config files.
 - Add stronger terminal ergonomics after install, including aliases/functions
   for the installed CLI tools where PowerShell needs explicit wiring.
 - Improve the top bar/status experience so it follows the chosen visual style
@@ -32,7 +34,8 @@ setup should become next.
 
 ## Later
 
-- Build a GUI `omawin` app if the TUI proves useful and the workflows are clear.
+- Build a fuller GUI `omawin` app if the menu/router proves useful and the
+  workflows are clear.
 - Add WSL setup once the Windows-native base is solid.
 - Expand the LazyVim-based Neovim setup, with deliberate integration points for
   VS Code rather than treating them as separate worlds.

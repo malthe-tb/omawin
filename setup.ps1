@@ -56,7 +56,7 @@ if (-not $SkipStartup) {
             return
         }
 
-        & (Join-Path $repoRoot 'scripts\register-desktop-startup.ps1')
+        & (Join-Path $repoRoot 'scripts\register-desktop-startup.ps1') -Force
     }
 }
 

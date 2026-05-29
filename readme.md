@@ -24,6 +24,31 @@ Run the full setup:
 That runs software installation, applies configs, and registers the desktop startup task.
 It also applies the wallpaper from `assets\wallpapers\dr15.jpg`.
 
+## Command menu
+
+Apply configs once to install the local `omawin` command surface:
+
+```powershell
+.\scripts\apply-configs.ps1
+```
+
+Then open the keyboard menu with `Win + Alt + Space`, or run it directly:
+
+```powershell
+.\bin\omawin.ps1 menu
+```
+
+The menu exposes common workflows such as starting or restarting the desktop
+stack, applying or collecting configs, previewing setup, setting wallpaper, and
+applying themes. The same workflows are available as commands:
+
+```powershell
+.\bin\omawin.ps1 commands
+.\bin\omawin.ps1 desktop restart
+.\bin\omawin.ps1 theme list
+.\bin\omawin.ps1 theme set tokyo-night -Apply
+```
+
 ## Software
 
 | Tool | Description |
@@ -73,13 +98,15 @@ This repo includes scripts to start the window-management stack at Windows logon
 .\scripts\register-desktop-startup.ps1
 ```
 
-That creates a Scheduled Task named `\Dotfiles\Dotfiles Desktop Startup` for the current user. It runs:
+That creates or updates a Scheduled Task named `\Dotfiles\Dotfiles Desktop Startup` for the current user. It runs:
 
 ```powershell
 .\scripts\start-desktop.ps1
 ```
 
-The startup script currently starts:
+The task uses a short delayed logon trigger so Windows has time to initialize
+the user session before the shell tools start. The startup script currently
+starts and health-checks:
 
 - `komorebic start --whkd --masir --bar`
 - `tacky-borders`

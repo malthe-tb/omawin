@@ -91,9 +91,13 @@ Useful defaults:
 - `<space><space>` opens quick file search.
 - `<space>e` toggles/focuses Explorer, then returns to the editor when used
   from the sidebar.
+- `<space>E` toggles the sidebar.
+- `<space>ac` opens the ChatGPT sidebar.
+- `<space>gg` opens and focuses Source Control.
 - `<space>sg` searches across files.
 - `<space>sh` and `<space>sv` split the editor.
 - `<space>bd` closes the current editor; `<space>bo` closes other editors.
+- `<space>ft` toggles the integrated terminal.
 - `<space>ca`, `<space>cr`, and `<space>cd` trigger code action, rename, and
   problems.
 - `gd`, `gr`, `gi`, `K`, `[d`, and `]d` provide common LSP/navigation actions.

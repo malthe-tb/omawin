@@ -207,7 +207,8 @@
         "g"
       ],
       "commands": [
-        "workbench.view.scm"
+        "workbench.view.scm",
+        "workbench.scm.focus"
       ]
     },
     {

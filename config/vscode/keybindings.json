@@ -42,6 +42,11 @@
     "when": "sideBarFocus && !inputFocus"
   },
   {
+    "key": "space shift+e",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "vim.mode == 'Normal' && editorTextFocus"
+  },
+  {
     "key": "space space",
     "command": "workbench.action.quickOpen",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
@@ -72,6 +77,11 @@
     "when": "vim.mode == 'Normal' && editorTextFocus"
   },
   {
+    "key": "space f t",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
+  },
+  {
     "key": "space c a",
     "command": "editor.action.codeAction",
     "when": "vim.mode == 'Normal' && editorTextFocus"
@@ -85,6 +95,22 @@
     "key": "space c d",
     "command": "workbench.actions.view.problems",
     "when": "vim.mode == 'Normal' && editorTextFocus"
+  },
+  {
+    "key": "space a c",
+    "command": "chatgpt.openSidebar",
+    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
+  },
+  {
+    "key": "space g g",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "workbench.view.scm",
+        "workbench.scm.focus"
+      ]
+    },
+    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
   {
     "key": "space g b",
