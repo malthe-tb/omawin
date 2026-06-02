@@ -21,6 +21,7 @@ $appPackages = @(
     @{ Name = 'Zen Browser'; Id = 'Zen-Team.Zen-Browser' },
     @{ Name = 'Flow Launcher'; Id = 'Flow-Launcher.Flow-Launcher' },
     @{ Name = 'Everything'; Id = 'voidtools.Everything' },
+    @{ Name = 'Docker Desktop'; Id = 'Docker.DockerDesktop' },
     @{ Name = 'Windows Terminal'; Id = 'Microsoft.WindowsTerminal' }
 )
 

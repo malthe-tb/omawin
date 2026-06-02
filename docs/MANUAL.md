@@ -21,6 +21,10 @@ If the preview looks right, run:
 After setup, restart open shells and desktop apps so new tools on `PATH` and
 new configuration files are picked up.
 
+Open Docker Desktop once after install so it can finish its Windows/WSL
+initialization. If Windows enables required platform features during install,
+reboot before starting Docker Desktop.
+
 ## Useful Checks
 
 Preview software installation:

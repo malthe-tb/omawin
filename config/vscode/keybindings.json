@@ -82,6 +82,11 @@
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
   {
+    "key": "escape",
+    "command": "workbench.action.closePanel",
+    "when": "terminalFocus"
+  },
+  {
     "key": "space c a",
     "command": "editor.action.codeAction",
     "when": "vim.mode == 'Normal' && editorTextFocus"

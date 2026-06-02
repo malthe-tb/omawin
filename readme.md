@@ -57,6 +57,7 @@ applying themes. The same workflows are available as commands:
 | [Zen Browser](https://zen-browser.app/) | Default installed browser, matching the existing Zen-focused web app and browser hotkeys. |
 | [Flow Launcher](https://www.flowlauncher.com/) | Keyboard-driven app launcher and command palette for Windows. |
 | [Everything](https://www.voidtools.com/) | Very fast local file search/indexing tool for Windows. |
+| [Docker Desktop](https://www.docker.com/products/docker-desktop/) | Container runtime and Docker tooling for Windows, mapping Omarchy's Docker baseline to the WSL-backed Windows app. |
 | [Windows Terminal](https://github.com/microsoft/terminal) | Primary terminal emulator, launched with `Win + Enter`. |
 
 ## Window management
@@ -255,6 +256,7 @@ Current winget packages:
 | Zen Browser | `Zen-Team.Zen-Browser` |
 | Flow Launcher | `Flow-Launcher.Flow-Launcher` |
 | Everything | `voidtools.Everything` |
+| Docker Desktop | `Docker.DockerDesktop` |
 | Windows Terminal | `Microsoft.WindowsTerminal` |
 | komorebi | `LGUG2Z.komorebi` |
 | masir | `LGUG2Z.masir` |
@@ -274,6 +276,8 @@ Current winget packages:
 Manual follow-up still needed:
 
 - Restart shells/apps after installing tools that update `PATH`.
+- Launch Docker Desktop once after install so it can finish its Windows/WSL
+  initialization. A reboot may be required if Windows enables platform features.
 
 ## Wallpaper
 
